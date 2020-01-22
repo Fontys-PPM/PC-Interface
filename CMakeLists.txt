@@ -25,7 +25,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
 #FIND_PACKAGE(Qt5Network)
 qt5_add_resources(resources.qrc)

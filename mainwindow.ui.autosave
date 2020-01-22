@@ -309,14 +309,14 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>Phi  - position</string>
+       <string>Phi - position</string>
       </property>
      </widget>
      <widget class="QPushButton" name="b_dbgClear">
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>330</y>
+        <y>320</y>
         <width>111</width>
         <height>25</height>
        </rect>
@@ -329,7 +329,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>610</x>
-        <y>330</y>
+        <y>320</y>
         <width>111</width>
         <height>25</height>
        </rect>
@@ -603,19 +603,6 @@ p, li { white-space: pre-wrap; }
        <enum>Qt::PlainText</enum>
       </property>
      </widget>
-     <widget class="Line" name="line">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>310</y>
-        <width>241</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -641,27 +628,6 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="openExternalLinks">
        <bool>true</bool>
-     <widget class="QLineEdit" name="lineEdit_7">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>50</y>
-        <width>211</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="b_getFile">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>50</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
       </property>
      </widget>
     </widget>

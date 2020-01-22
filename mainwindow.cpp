@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-const QString build = "Build: alfa_21012020";
+const QString build = "Build: alpha_21012020";
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -138,4 +138,10 @@ void MainWindow::on_sendButton_clicked()
     result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
     ui->dbgLabel->setPlainText(result);
 
+}
+
+void MainWindow::on_b_getFile_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("Open Image"), "C:\\Users\\thijs\\", tr("Controid Files (*.csv *.txt)"));
 }
