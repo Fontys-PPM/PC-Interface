@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>figures/Fontys-Logo.png</file>
+        <file>figures/PCB.png</file>
     </qresource>
 </RCC>

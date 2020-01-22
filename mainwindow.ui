@@ -45,7 +45,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Tab_1">
      <attribute name="title">
@@ -156,7 +156,7 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="debug_tab">
      <attribute name="title">
       <string>Debug</string>
      </attribute>
@@ -390,7 +390,7 @@ p, li { white-space: pre-wrap; }
        <string>10.101.10.150</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="cb_customIPAddress">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -448,7 +448,7 @@ p, li { white-space: pre-wrap; }
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>figures/Fontys-Logo.svg.png</pixmap>
+       <pixmap>figures/Fontys-Logo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -608,6 +608,28 @@ p, li { white-space: pre-wrap; }
      <attribute name="title">
       <string>Demo</string>
      </attribute>
+     <widget class="QLabel" name="img_demoPCBImage">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>70</y>
+        <width>411</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>figures/PCB.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -625,7 +647,7 @@ p, li { white-space: pre-wrap; }
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>checkBox</tabstop>
+  <tabstop>cb_customIPAddress</tabstop>
   <tabstop>lineEdit_20</tabstop>
   <tabstop>lineEdit_19</tabstop>
   <tabstop>pushButton_10</tabstop>
