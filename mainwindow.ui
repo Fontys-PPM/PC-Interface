@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Fontys pick and place machine controller</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -45,7 +45,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Tab_1">
      <attribute name="title">
@@ -325,7 +325,7 @@ p, li { white-space: pre-wrap; }
        <string>Clear</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="sendButton">
       <property name="geometry">
        <rect>
         <x>610</x>
@@ -555,7 +555,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>hello server\r\n\r\n\r\n\r\n</string>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -620,12 +620,6 @@ p, li { white-space: pre-wrap; }
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuPPM">
-    <property name="title">
-     <string>PPM</string>
-    </property>
-   </widget>
-   <addaction name="menuPPM"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
@@ -646,7 +640,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>b_dbgClear_3</tabstop>
   <tabstop>pushButton_13</tabstop>
   <tabstop>b_dbgClear</tabstop>
-  <tabstop>pushButton_3</tabstop>
+  <tabstop>sendButton</tabstop>
   <tabstop>cmdLabel</tabstop>
   <tabstop>scrollArea_2</tabstop>
   <tabstop>pushButton_2</tabstop>
