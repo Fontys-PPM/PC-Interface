@@ -13,6 +13,8 @@ public:
 
     QString Connect(QString adress, int port );
 
+    QString Connect(QString adress, int port, QString message );
+
 signals:
 
 public slots:

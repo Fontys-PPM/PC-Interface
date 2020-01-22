@@ -129,3 +129,11 @@ void MainWindow::on_lineEdit_6_editingFinished()
 {
     updateCmd();
 }
+
+void MainWindow::on_sendButton_clicked()
+{
+    QString result;
+    result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
+    ui->dbgLabel->setPlainText(result);
+
+}

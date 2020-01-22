@@ -36,6 +36,8 @@ private slots:
 
     void on_lineEdit_6_editingFinished();
 
+    void on_sendButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SocketTest cTest;
