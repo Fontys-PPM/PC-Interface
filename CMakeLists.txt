@@ -28,7 +28,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
 #FIND_PACKAGE(Qt5Network)
-
+qt5_add_resources(resources.qrc)
 if(ANDROID)
   add_library(ppm2 SHARED
     main.cpp
@@ -46,6 +46,7 @@ else()
     mainwindow.ui
     sockettest.cpp
     sockettest.h
+    resources.qrc
   )
 endif()
 

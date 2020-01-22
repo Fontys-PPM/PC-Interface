@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix("C:/Users/thijs/OneDrive/Desktop/ppm2/figures/Fontys-Logo.svg.png");
+    QPixmap pix(":/images/figures/Fontys-Logo.png");
     ui->imageLabel->setPixmap(pix);
     ui->buildLabel->setText(build);
     //connect(pushButton_11, SIGNAL (released()), this, SLOT (test()));
