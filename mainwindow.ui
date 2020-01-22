@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Fontys pick and place machine controller</string>
+   <string>Fontys Pick and Place Machine Interface</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
