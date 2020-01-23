@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap pix(":/images/figures/Fontys-Logo.png");
     ui->imageLabel->setPixmap(pix);
     ui->buildLabel->setText(build);
-    QPixmap pcbImage(":/images/figures/PCB.png");
+
+    //QPixmap pcbImage(":/images/figures/PCB.png");
     //ui->img_demoPCBImage->setPixmap(pcbImage);
     //connect(pushButton_11, SIGNAL (released()), this, SLOT (test()));
 
@@ -153,4 +154,9 @@ void MainWindow::on_b_getFile_clicked()
 //    {
 //        // do stuff with the data
 //    }
+}
+
+void MainWindow::on_btn_selectPositionFile_clicked()
+{
+
 }
