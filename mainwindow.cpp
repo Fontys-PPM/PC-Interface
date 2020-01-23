@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-const QString build = "Build: alpha_21012020";
+const QString build = "Build: alpha_23012020";
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->imageLabel->setPixmap(pix);
     ui->buildLabel->setText(build);
     QPixmap pcbImage(":/images/figures/PCB.png");
-    ui->img_demoPCBImage->setPixmap(pcbImage);
+    //ui->img_demoPCBImage->setPixmap(pcbImage);
     //connect(pushButton_11, SIGNAL (released()), this, SLOT (test()));
 
 }
@@ -142,6 +142,15 @@ void MainWindow::on_sendButton_clicked()
 
 void MainWindow::on_b_getFile_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
-        tr("Open Image"), "C:\\Users\\thijs\\", tr("Controid Files (*.csv *.txt)"));
+    QUrl fileName = QFileDialog::getOpenFileUrl(this);
+
+    ui->demoFile->setText(fileName.toString());
+
+//    io::CSVReader<3> in(fileName.toString());
+//    in.read_header(io::ignore_extra_column, "vendor", "size", "speed");
+//    std::string vendor; int size; double speed;
+//    while(in.read_row(vendor, size, speed))
+//    {
+//        // do stuff with the data
+//    }
 }

@@ -621,7 +621,7 @@ p, li { white-space: pre-wrap; }
      <attribute name="title">
       <string>Demo</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="demoFile">
       <property name="geometry">
        <rect>
         <x>40</x>

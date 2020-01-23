@@ -27,6 +27,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
+find_package(Qt5Core REQUIRED)
+
 #FIND_PACKAGE(Qt5Network)
 qt5_add_resources(resources.qrc)
 if(ANDROID)
@@ -37,6 +39,7 @@ if(ANDROID)
     mainwindow.ui
     sockettest.cpp
     sockettest.h
+    csv.h
   )
 else()
   add_executable(ppm2
@@ -47,6 +50,7 @@ else()
     sockettest.cpp
     sockettest.h
     resources.qrc
+    csv.h
   )
 endif()
 

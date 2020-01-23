@@ -1,9 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//#include <QxtCsvModel>
 #include <QMainWindow>
 #include "sockettest.h"
 #include <QFileDialog>
+#include "csv.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
