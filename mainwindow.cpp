@@ -179,12 +179,18 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
+        QString commandStr = "CMOVE;X" + QX + ";Y" + QY +
+                ";Z-1;P"+ QRotation +";" ;
+
+        QStandardItem *item7 = new QStandardItem(commandStr);
+
         model->setItem(counter,0,item );
         model->setItem(counter,1,item2);
         model->setItem(counter,2,item3);
         model->setItem(counter,3,item4);
         model->setItem(counter,4,item5);
         model->setItem(counter,5,item6);
+        model->setItem(counter,6,item7);
         counter++;
     }
 
