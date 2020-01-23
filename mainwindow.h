@@ -6,6 +6,7 @@
 #include "sockettest.h"
 #include <QFileDialog>
 #include "csv.h"
+#include <QStandardItemModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,6 +43,8 @@ private slots:
     void on_sendButton_clicked();
 
     void on_b_getFile_clicked();
+
+    void on_btn_selectPositionFile_clicked();
 
 private:
     Ui::MainWindow *ui;

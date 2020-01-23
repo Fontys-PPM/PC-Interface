@@ -143,20 +143,50 @@ void MainWindow::on_sendButton_clicked()
 
 void MainWindow::on_b_getFile_clicked()
 {
-    QUrl fileName = QFileDialog::getOpenFileUrl(this);
 
-    ui->demoFile->setText(fileName.toString());
-
-//    io::CSVReader<3> in(fileName.toString());
-//    in.read_header(io::ignore_extra_column, "vendor", "size", "speed");
-//    std::string vendor; int size; double speed;
-//    while(in.read_row(vendor, size, speed))
-//    {
-//        // do stuff with the data
-//    }
 }
 
 void MainWindow::on_btn_selectPositionFile_clicked()
 {
+    QUrl fileName = QFileDialog::getOpenFileUrl(this);
 
+    ui->txt_positionFilePath->setText(fileName.toLocalFile());
+    //ui->txt_positionFilePath->setText("C:/Users/thijs/OneDrive/Desktop/ppm2/Files/SMT_Coordinate_Template.csv");
+
+    //io::CSVReader<6> in("C:/Users/thijs/OneDrive/Desktop/ppm2/Files/SMT_Coordinate_Template.csv");
+    io::CSVReader<6> in( fileName.toLocalFile().toStdString());
+    in.read_header(io::ignore_extra_column, "Designator", "Footprint", "X","Y","Layer","Rotation");
+    std::string Designator; std::string Footprint; std::string X; std::string Y; std::string Layer; std::string Rotation;
+
+    QStandardItemModel *model = new QStandardItemModel;
+
+    int counter = 0;
+
+    while(in.read_row(Designator, Footprint, X, Y, Layer, Rotation))
+    {
+        QString Qdesignator = QString::fromStdString(Designator);
+        QString QFootprint = QString::fromStdString(Footprint);
+        QString QX = QString::fromStdString(X);
+        QString QY = QString::fromStdString(Y);
+        QString QLayer = QString::fromStdString(Layer);
+        QString QRotation = QString::fromStdString(Rotation);
+
+
+        QStandardItem *item  = new QStandardItem(Qdesignator);
+        QStandardItem *item2 = new QStandardItem(QFootprint);
+        QStandardItem *item3 = new QStandardItem(QX);
+        QStandardItem *item4 = new QStandardItem(QY);
+        QStandardItem *item5 = new QStandardItem(QLayer);
+        QStandardItem *item6 = new QStandardItem(QRotation);
+
+        model->setItem(counter,0,item );
+        model->setItem(counter,1,item2);
+        model->setItem(counter,2,item3);
+        model->setItem(counter,3,item4);
+        model->setItem(counter,4,item5);
+        model->setItem(counter,5,item6);
+        counter++;
+    }
+
+    ui->tbl_positionFileView->setModel(model);
 }
