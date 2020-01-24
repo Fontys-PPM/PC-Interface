@@ -38,8 +38,8 @@ void MainWindow::updateCmd()
     }
     else if(state == "Move")
     {
-        command = "CMOVE;X" + ui->lineEdit_3->text() + ";Y" + ui->lineEdit_4->text() +
-                ";Z" + ui->lineEdit_5->text() +";P"+ ui->lineEdit_6->text() +";" ;
+        command = "CMOVE;" + ui->lineEdit_3->text() + ";" + ui->lineEdit_4->text() +
+                ";" + ui->lineEdit_5->text() +";"+ ui->lineEdit_6->text() +";" ;
     }
     else if(state == "Ping")
     {
@@ -171,16 +171,18 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QString QLayer = QString::fromStdString(Layer);
         QString QRotation = QString::fromStdString(Rotation);
 
+        QString offsetX =QString::number( QX.toFloat() + ui->txt_xOffset->text().toFloat());
+        QString offsetY =QString::number( QY.toFloat() + ui->txt_yOffset->text().toFloat());
 
         QStandardItem *item  = new QStandardItem(Qdesignator);
         QStandardItem *item2 = new QStandardItem(QFootprint);
-        QStandardItem *item3 = new QStandardItem(QX);
-        QStandardItem *item4 = new QStandardItem(QY);
+        QStandardItem *item3 = new QStandardItem(offsetX);
+        QStandardItem *item4 = new QStandardItem(offsetY);
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
-        QString commandStr = "CMOVE;X" + QX + ";Y" + QY +
-                ";Z-1;P"+ QRotation +";" ;
+        QString commandStr = "CMOVE;" + offsetX + ";" + offsetY +
+                ";-1;"+ QRotation +";" ;
 
         QStandardItem *item7 = new QStandardItem(commandStr);
 
