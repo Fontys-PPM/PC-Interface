@@ -265,6 +265,9 @@ p, li { white-space: pre-wrap; }
       <property name="readOnly">
        <bool>false</bool>
       </property>
+      <property name="placeholderText">
+       <string>Input in millimeters</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -314,6 +317,9 @@ p, li { white-space: pre-wrap; }
         <height>25</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>Input in millimeters</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_5">
       <property name="geometry">
@@ -323,6 +329,9 @@ p, li { white-space: pre-wrap; }
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Input in millimeters</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_6">
@@ -349,6 +358,9 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Input in millimeters</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_7">

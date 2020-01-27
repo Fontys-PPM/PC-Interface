@@ -1,5 +1,11 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <string>
+#include <stdio.h>
+#include <sstream>
+#include <vector>
+
+
 
 const QString build = "Build: alpha_23012020";
 
@@ -24,13 +30,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
 void MainWindow::updateCmd()
 {
     QString state = ui->comboBox->currentText();
     QString command;
     if(state == "Power on")
     {
-        command = "CPOWERON;";
+        command = "CPWON;";
     }
     else if(state == "Home")
     {
@@ -38,8 +45,19 @@ void MainWindow::updateCmd()
     }
     else if(state == "Move")
     {
-        command = "CMOVE;" + ui->lineEdit_3->text() + ";" + ui->lineEdit_4->text() +
-                ";" + ui->lineEdit_5->text() +";"+ ui->lineEdit_6->text() +";" ;
+        int x = (int)( ui->lineEdit_3->text().toFloat() * 1000);
+        int y = (int)( ui->lineEdit_4->text().toFloat() * 1000);
+        int z = (int)( ui->lineEdit_5->text().toFloat() * 1000);
+        int p = (int)( ui->lineEdit_6->text().toFloat() * 1000);
+
+        int leading = 6; //6 at max
+        std::stringstream ssX, ssY, ssZ, ssP;
+        ssX <<  std::to_string(x*0.000001).substr(8-leading); //="042"
+        ssY <<  std::to_string(y*0.000001).substr(8-leading);
+        ssZ <<  std::to_string(z*0.000001).substr(8-leading);
+        ssP <<  std::to_string(p*0.000001).substr(8-leading);
+        command = "CMOVE;" + QString::fromStdString(ssX.str()) + ";" + QString::fromStdString(ssY.str()) +
+                ";" + QString::fromStdString(ssZ.str()) +";"+ QString::fromStdString(ssP.str()) +";" ;
     }
     else if(state == "Ping")
     {
@@ -47,7 +65,7 @@ void MainWindow::updateCmd()
     }
     else if(state == "Power off")
     {
-        command = "CPOWEROFF;";
+        command = "CPOFF;";
     }
     ui->cmdLabel->setText(command);
 
@@ -136,6 +154,9 @@ void MainWindow::on_lineEdit_6_editingFinished()
 void MainWindow::on_sendButton_clicked()
 {
     QString result;
+
+
+
     result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
     ui->dbgLabel->setPlainText(result);
 
