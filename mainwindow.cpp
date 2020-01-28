@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->imageLabel->setPixmap(pix);
     ui->buildLabel->setText(build);
 
-    QRegExp rx("^[0-9]{1,2}([.][0-9]{1,4})?$");
+    QRegExp rx("^[0-9]{1,3}([.][0-9]{1,3})?$");
     QValidator *validator = new QRegExpValidator(rx, this);
 
     ui->lineEdit_3->setValidator(validator);
