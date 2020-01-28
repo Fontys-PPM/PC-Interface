@@ -7,7 +7,8 @@
 
 
 
-const QString build = "Build: alpha_23012020";
+
+const QString build = "Build: alpha_27012020";
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,6 +19,15 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap pix(":/images/figures/Fontys-Logo.png");
     ui->imageLabel->setPixmap(pix);
     ui->buildLabel->setText(build);
+
+    QRegExp rx("^[0-9]{1,2}([.][0-9]{1,4})?$");
+    QValidator *validator = new QRegExpValidator(rx, this);
+
+    ui->lineEdit_3->setValidator(validator);
+    ui->lineEdit_4->setValidator(validator);
+    ui->lineEdit_5->setValidator(validator);
+    ui->lineEdit_6->setValidator(validator);
+
 
     //QPixmap pcbImage(":/images/figures/PCB.png");
     //ui->img_demoPCBImage->setPixmap(pcbImage);
