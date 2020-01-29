@@ -86,7 +86,7 @@ void tcpThread::sendCommand(const QString &hostName, quint16 port, QString msg)
 void tcpThread::run()
 {
     mutex.lock();
-
+    QString cmdMsg = Msg;
     QString serverName = hostName;
     quint16 serverPort = port;
     mutex.unlock();
@@ -109,35 +109,39 @@ void tcpThread::run()
 
         QDataStream in(&socket);
         in.setVersion(QDataStream::Qt_4_0);
-        QString fortune;
 
+        QString plcAck;
+        QString response = "Send: ";
+        response = response + cmdMsg + "\n";
 
-//        do {
-//            if (!socket.waitForReadyRead(Timeout)) {
-//                emit error(socket.error(), socket.errorString());
-//                return;
-//            }
-
-//            in.startTransaction();
-//            in >> fortune;
-//        } while (!in.commitTransaction());
-
-
-        //socket->write("hello server\r\n\r\n\r\n\r\n");
-//        socket->waitForBytesWritten(1000);
-
-        std::string str = Msg.toStdString();
+        std::string str = cmdMsg.toStdString();
         const char* p = str.c_str();
 
         socket.write(p);
         socket.waitForBytesWritten(1000);
-        QString response = "Send: ";
-        response = response + Msg;
+
+
+        socket.waitForReadyRead(3000);
+
+        if(socket.bytesAvailable() > 0)
+        {
+            QByteArray byteArray = socket.readAll();
+            qDebug() << byteArray;
+
+            QString result = QString::fromStdString(byteArray.toStdString());
+            response = response + "Response: " + result;
+        }
+
+
+
         mutex.lock();
+
+
         emit newFortune(response);
 
 
         cond.wait(&mutex);
+        cmdMsg = Msg;
         serverName = hostName;
         serverPort = port;
         mutex.unlock();
