@@ -17,16 +17,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     QPixmap pix(":/images/figures/Fontys-Logo.png");
-    ui->imageLabel->setPixmap(pix);
-    ui->buildLabel->setText(build);
+    ui->img_fontysLogo->setPixmap(pix);
+    ui->lbl_buildVersion->setText(build);
 
     QRegExp rx("^[0-9]{1,3}([.][0-9]{1,3})?$");
     QValidator *validator = new QRegExpValidator(rx, this);
 
-    ui->lineEdit_3->setValidator(validator);
-    ui->lineEdit_4->setValidator(validator);
-    ui->lineEdit_5->setValidator(validator);
-    ui->lineEdit_6->setValidator(validator);
+    ui->txt_xPosition->setValidator(validator);
+    ui->txt_yPosition->setValidator(validator);
+    ui->txt_zPosition->setValidator(validator);
+    ui->txt_phiPosition->setValidator(validator);
 
 
     //QPixmap pcbImage(":/images/figures/PCB.png");
@@ -55,10 +55,10 @@ void MainWindow::updateCmd()
     }
     else if(state == "Move")
     {
-        int x = (int)( ui->lineEdit_3->text().toFloat() * 1000);
-        int y = (int)( ui->lineEdit_4->text().toFloat() * 1000);
-        int z = (int)( ui->lineEdit_5->text().toFloat() * 1000);
-        int p = (int)( ui->lineEdit_6->text().toFloat() * 1000);
+        int x = (int)( ui->txt_xPosition->text().toFloat() * 1000);
+        int y = (int)( ui->txt_yPosition->text().toFloat() * 1000);
+        int z = (int)( ui->txt_zPosition->text().toFloat() * 1000);
+        int p = (int)( ui->txt_phiPosition->text().toFloat() * 1000);
 
         int leading = 6; //6 at max
         std::stringstream ssX, ssY, ssZ, ssP;
@@ -82,23 +82,23 @@ void MainWindow::updateCmd()
 }
 
 
-void MainWindow::on_b_dbgClear_clicked()
+void MainWindow::on_btn_clearDebugConsole_clicked()
 {
-    ui->lineEdit_3->setText("");
-    ui->lineEdit_4->setText("");
-    ui->lineEdit_5->setText("");
-    ui->lineEdit_6->setText("");
-    ui->cmdLabel->setText("");
-    ui->dbgLabel->setPlainText("");
+//    ui->txt_xPosition->setText("");
+//    ui->txt_yPosition->setText("");
+//    ui->txt_zPosition->setText("");
+//    ui->txt_phiPosition->setText("");
+//    ui->cmdLabel->setText("");
+    ui->lbl_debugConsole->setPlainText("");
 }
 
-void MainWindow::on_dbg_Connect_clicked()
+void MainWindow::on_btn_connect_clicked()
 {
     //connect to the TCP/IP server on the PLC
 
     QString result;
-    result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt());
-    ui->dbgLabel->setPlainText(result);
+    result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt());
+    ui->lbl_debugConsole->setPlainText(result);
 }
 
 void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
@@ -109,54 +109,54 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     if(ui->comboBox->currentText() != "Move")
     {
-        ui->lineEdit_3->setReadOnly(true);
-        ui->lineEdit_4->setReadOnly(true);
-        ui->lineEdit_5->setReadOnly(true);
-        ui->lineEdit_6->setReadOnly(true);
+        ui->txt_xPosition->setReadOnly(true);
+        ui->txt_yPosition->setReadOnly(true);
+        ui->txt_zPosition->setReadOnly(true);
+        ui->txt_phiPosition->setReadOnly(true);
 
         QPalette *palette = new QPalette();
         palette->setColor(QPalette::Base,Qt::gray);
         palette->setColor(QPalette::Text,Qt::darkGray);
-        ui->lineEdit_3->setPalette(*palette);
-        ui->lineEdit_4->setPalette(*palette);
-        ui->lineEdit_5->setPalette(*palette);
-        ui->lineEdit_6->setPalette(*palette);
+        ui->txt_xPosition->setPalette(*palette);
+        ui->txt_yPosition->setPalette(*palette);
+        ui->txt_zPosition->setPalette(*palette);
+        ui->txt_phiPosition->setPalette(*palette);
     }
     else
     {
-        ui->lineEdit_3->setReadOnly(false);
-        ui->lineEdit_4->setReadOnly(false);
-        ui->lineEdit_5->setReadOnly(false);
-        ui->lineEdit_6->setReadOnly(false);
+        ui->txt_xPosition->setReadOnly(false);
+        ui->txt_yPosition->setReadOnly(false);
+        ui->txt_zPosition->setReadOnly(false);
+        ui->txt_phiPosition->setReadOnly(false);
 
         QPalette *palette = new QPalette();
         palette->setColor(QPalette::Base,Qt::white);
         palette->setColor(QPalette::Text,Qt::black);
-        ui->lineEdit_3->setPalette(*palette);
-        ui->lineEdit_4->setPalette(*palette);
-        ui->lineEdit_5->setPalette(*palette);
-        ui->lineEdit_6->setPalette(*palette);
+        ui->txt_xPosition->setPalette(*palette);
+        ui->txt_yPosition->setPalette(*palette);
+        ui->txt_zPosition->setPalette(*palette);
+        ui->txt_phiPosition->setPalette(*palette);
     }
 
     updateCmd();
 }
 
-void MainWindow::on_lineEdit_3_editingFinished()
+void MainWindow::on_txt_xPosition_editingFinished()
 {
     updateCmd();
 }
 
-void MainWindow::on_lineEdit_4_editingFinished()
+void MainWindow::on_txt_yPosition_editingFinished()
 {
     updateCmd();
 }
 
-void MainWindow::on_lineEdit_5_editingFinished()
+void MainWindow::on_txt_zPosition_editingFinished()
 {
     updateCmd();
 }
 
-void MainWindow::on_lineEdit_6_editingFinished()
+void MainWindow::on_txt_phiPosition_editingFinished()
 {
     updateCmd();
 }
@@ -167,8 +167,8 @@ void MainWindow::on_sendButton_clicked()
 
 
 
-    result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
-    ui->dbgLabel->setPlainText(result);
+    result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt(), ui->cmdLabel->text());
+    ui->lbl_debugConsole->setPlainText(result);
 
 }
 
@@ -228,4 +228,21 @@ void MainWindow::on_btn_selectPositionFile_clicked()
     }
 
     ui->tbl_positionFileView->setModel(model);
+}
+
+void MainWindow::on_btn_moveCommand_clicked()
+{
+    int x = (int)( ui->txt_xPosition->text().toFloat() * 1000);
+    int y = (int)( ui->txt_yPosition->text().toFloat() * 1000);
+    int z = (int)( ui->txt_zPosition->text().toFloat() * 1000);
+    int p = (int)( ui->txt_phiPosition->text().toFloat() * 1000);
+
+    int leading = 6; //6 at max
+    std::stringstream ssX, ssY, ssZ, ssP;
+    ssX <<  std::to_string(x*0.000001).substr(8-leading); //="042"
+    ssY <<  std::to_string(y*0.000001).substr(8-leading);
+    ssZ <<  std::to_string(z*0.000001).substr(8-leading);
+    ssP <<  std::to_string(p*0.000001).substr(8-leading);
+    command = "CMOVE;" + QString::fromStdString(ssX.str()) + ";" + QString::fromStdString(ssY.str()) +
+            ";" + QString::fromStdString(ssZ.str()) +";"+ QString::fromStdString(ssP.str()) +";" ;
 }
