@@ -69,12 +69,13 @@ tcpThread::~tcpThread()
     wait();
 }
 
-void tcpThread::sendCommand(const QString &hostName, quint16 port)
+void tcpThread::sendCommand(const QString &hostName, quint16 port, QString msg)
 {
 
     QMutexLocker locker(&mutex);
     this->hostName = hostName;
     this->port = port;
+    this->Msg = msg;
 
     if (!isRunning())
         start();
@@ -125,11 +126,15 @@ void tcpThread::run()
         //socket->write("hello server\r\n\r\n\r\n\r\n");
 //        socket->waitForBytesWritten(1000);
 
-        socket.write("hello server\r\n\r\n\r\n\r\n");
-        socket.waitForBytesWritten(1000);
+        std::string str = Msg.toStdString();
+        const char* p = str.c_str();
 
+        socket.write(p);
+        socket.waitForBytesWritten(1000);
+        QString response = "Send: ";
+        response = response + Msg;
         mutex.lock();
-        emit newFortune("send: hello server\r\n\r\n\r\n\r\n");
+        emit newFortune(response);
 
 
         cond.wait(&mutex);

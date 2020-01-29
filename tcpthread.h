@@ -65,7 +65,7 @@ public:
     tcpThread(QObject *parent = 0);
     ~tcpThread();
 
-    void sendCommand(const QString &hostName, quint16 port);
+    void sendCommand(const QString &hostName, quint16 port, QString msg);
     void run() override;
 
 signals:
@@ -73,7 +73,7 @@ signals:
     void error(int socketError, const QString &message);
 
 private:
-    QString hostName;
+    QString hostName, Msg;
     quint16 port;
     QMutex mutex;
     QWaitCondition cond;

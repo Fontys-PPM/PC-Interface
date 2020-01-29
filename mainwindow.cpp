@@ -108,7 +108,7 @@ void MainWindow::on_dbg_Connect_clicked()
 //    QString result;
 //    result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt());
 //    ui->dbgLabel->setPlainText(result);
-    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt());
+    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
 }
 
 void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
@@ -180,7 +180,7 @@ void MainWindow::on_sendButton_clicked()
     //result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
     //ui->dbgLabel->setPlainText(result);
 
-    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt());
+    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
 
 }
 
