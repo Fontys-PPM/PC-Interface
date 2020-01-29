@@ -178,7 +178,7 @@ void MainWindow::on_sendButton_clicked()
 
 
     //result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
-    ui->dbgLabel->setPlainText(result);
+    //ui->dbgLabel->setPlainText(result);
 
     thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt());
 
