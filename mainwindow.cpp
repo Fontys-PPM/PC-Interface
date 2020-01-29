@@ -45,14 +45,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::showResponse(const QString &nextFortune)
 {
-    ui->dbgLabel->appendPlainText(nextFortune);
+    ui->lbl_debugConsole->appendPlainText(nextFortune);
 
 }
 
 
 void MainWindow::updateCmd()
 {
-    QString state = ui->comboBox->currentText();
+    QString state = "CMOVE";
     QString command;
     if(state == "Power on")
     {
@@ -86,7 +86,7 @@ void MainWindow::updateCmd()
     {
         command = "CPOFF;";
     }
-    ui->cmdLabel->setText(command);
+    ui->txt_commandString->setText(command);
 
 }
 
@@ -97,7 +97,7 @@ void MainWindow::on_btn_clearDebugConsole_clicked()
 //    ui->txt_yPosition->setText("");
 //    ui->txt_zPosition->setText("");
 //    ui->txt_phiPosition->setText("");
-//    ui->cmdLabel->setText("");
+//    ui->txt_commandString->setText("");
     ui->lbl_debugConsole->setPlainText("");
 }
 
@@ -106,49 +106,9 @@ void MainWindow::on_btn_connect_clicked()
     //connect to the TCP/IP server on the PLC
 
 //    QString result;
-//    result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt());
-//    ui->dbgLabel->setPlainText(result);
-    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
-}
-
-void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
-{
-}
-
-void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
-{
-    if(ui->comboBox->currentText() != "Move")
-    {
-        ui->txt_xPosition->setReadOnly(true);
-        ui->txt_yPosition->setReadOnly(true);
-        ui->txt_zPosition->setReadOnly(true);
-        ui->txt_phiPosition->setReadOnly(true);
-
-        QPalette *palette = new QPalette();
-        palette->setColor(QPalette::Base,Qt::gray);
-        palette->setColor(QPalette::Text,Qt::darkGray);
-        ui->txt_xPosition->setPalette(*palette);
-        ui->txt_yPosition->setPalette(*palette);
-        ui->txt_zPosition->setPalette(*palette);
-        ui->txt_phiPosition->setPalette(*palette);
-    }
-    else
-    {
-        ui->txt_xPosition->setReadOnly(false);
-        ui->txt_yPosition->setReadOnly(false);
-        ui->txt_zPosition->setReadOnly(false);
-        ui->txt_phiPosition->setReadOnly(false);
-
-        QPalette *palette = new QPalette();
-        palette->setColor(QPalette::Base,Qt::white);
-        palette->setColor(QPalette::Text,Qt::black);
-        ui->txt_xPosition->setPalette(*palette);
-        ui->txt_yPosition->setPalette(*palette);
-        ui->txt_zPosition->setPalette(*palette);
-        ui->txt_phiPosition->setPalette(*palette);
-    }
-
-    updateCmd();
+//    result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt());
+//    ui->lbl_debugConsole->setPlainText(result);
+    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 }
 
 void MainWindow::on_txt_xPosition_editingFinished()
@@ -171,17 +131,17 @@ void MainWindow::on_txt_phiPosition_editingFinished()
     updateCmd();
 }
 
-void MainWindow::on_sendButton_clicked()
+void MainWindow::on_btn_send_clicked()
 {
     QString result;
 
 
 
 
-    //result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
-    //ui->dbgLabel->setPlainText(result);
+    //result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+    //ui->lbl_debugConsole->setPlainText(result);
 
-    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
+    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 
 
 }
@@ -246,6 +206,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
 
 void MainWindow::on_btn_moveCommand_clicked()
 {
+    QString command;
     int x = (int)( ui->txt_xPosition->text().toFloat() * 1000);
     int y = (int)( ui->txt_yPosition->text().toFloat() * 1000);
     int z = (int)( ui->txt_zPosition->text().toFloat() * 1000);

@@ -42,7 +42,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>801</width>
       <height>611</height>
      </rect>
@@ -207,9 +207,9 @@
       <widget class="QLineEdit" name="txt_xPosition">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>80</x>
          <y>20</y>
-         <width>121</width>
+         <width>110</width>
          <height>25</height>
         </rect>
        </property>
@@ -239,9 +239,9 @@
       <widget class="QLineEdit" name="txt_yPosition">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>80</x>
          <y>50</y>
-         <width>121</width>
+         <width>110</width>
          <height>25</height>
         </rect>
        </property>
@@ -265,9 +265,9 @@
       <widget class="QLineEdit" name="txt_zPosition">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>80</x>
          <y>80</y>
-         <width>121</width>
+         <width>110</width>
          <height>25</height>
         </rect>
        </property>
@@ -291,9 +291,9 @@
       <widget class="QLineEdit" name="txt_phiPosition">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>80</x>
          <y>110</y>
-         <width>121</width>
+         <width>110</width>
          <height>25</height>
         </rect>
        </property>
@@ -330,10 +330,10 @@
       <property name="title">
        <string>Vacuum Pump</string>
       </property>
-      <widget class="QPushButton" name="b_dbgClear_2">
+      <widget class="QPushButton" name="btn_disableVacuum">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>160</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -343,10 +343,10 @@
         <string>Disable Vacuum</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_12">
+      <widget class="QPushButton" name="btn_enableVacuum">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>20</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -369,10 +369,10 @@
       <property name="title">
        <string>Phi Module Light</string>
       </property>
-      <widget class="QPushButton" name="pushButton_13">
+      <widget class="QPushButton" name="btn_enableLight">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>20</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -382,10 +382,10 @@
         <string>Enable Light</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="b_dbgClear_3">
+      <widget class="QPushButton" name="btn_disableLight">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>160</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -408,7 +408,7 @@
       <property name="title">
        <string>Homing</string>
       </property>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btn_homeDevice">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -421,7 +421,7 @@
         <string>Home Device</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="btn_homeXAxis">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -434,7 +434,7 @@
         <string>Home X Axis</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="btn_homeYAxis">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -447,7 +447,7 @@
         <string>Home Y Axis</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="btn_homeZAxis">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -460,7 +460,7 @@
         <string>Home Z Axis</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="btn_homePhiAxis">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -486,7 +486,7 @@
       <property name="title">
        <string>Miscellaneous</string>
       </property>
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="btn_ping">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -525,15 +525,15 @@
       <property name="title">
        <string>Command String</string>
       </property>
-      <widget class="QLineEdit" name="cmdLabel">
+      <widget class="QLineEdit" name="txt_commandString">
        <property name="enabled">
         <bool>false</bool>
        </property>
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>20</x>
          <y>40</y>
-         <width>351</width>
+         <width>341</width>
          <height>25</height>
         </rect>
        </property>
@@ -547,10 +547,10 @@
         <string>Command String</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="cbx_showCommandString">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>20</x>
          <y>20</y>
          <width>181</width>
          <height>18</height>
@@ -560,7 +560,7 @@
         <string>Show Command Before Sending</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btn_send">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -897,12 +897,12 @@ p, li { white-space: pre-wrap; }
   <tabstop>txt_yPosition</tabstop>
   <tabstop>txt_zPosition</tabstop>
   <tabstop>txt_phiPosition</tabstop>
-  <tabstop>b_dbgClear_2</tabstop>
-  <tabstop>pushButton_12</tabstop>
-  <tabstop>b_dbgClear_3</tabstop>
-  <tabstop>pushButton_13</tabstop>
+  <tabstop>btn_disableVacuum</tabstop>
+  <tabstop>btn_enableVacuum</tabstop>
+  <tabstop>btn_disableLight</tabstop>
+  <tabstop>btn_enableLight</tabstop>
   <tabstop>btn_clearDebugConsole</tabstop>
-  <tabstop>cmdLabel</tabstop>
+  <tabstop>txt_commandString</tabstop>
   <tabstop>scrollArea_2</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>lineEdit</tabstop>

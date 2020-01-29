@@ -29,10 +29,6 @@ private slots:
 
     void on_btn_connect_clicked();
 
-    void on_comboBox_currentTextChanged(const QString &arg1);
-
-    void on_comboBox_currentIndexChanged(const QString &arg1);
-
     void on_txt_xPosition_editingFinished();
 
     void on_txt_yPosition_editingFinished();
@@ -41,15 +37,11 @@ private slots:
 
     void on_txt_phiPosition_editingFinished();
 
-    void on_sendButton_clicked();
+    void on_btn_send_clicked();
 
     void on_b_getFile_clicked();
 
     void on_btn_selectPositionFile_clicked();
-
-    void on_btn_disconnect_clicked();
-
-    void on_pushButton_13_clicked();
 
     void on_btn_moveCommand_clicked();
 
