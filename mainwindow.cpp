@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->txt_zPosition->setValidator(validator);
     ui->txt_phiPosition->setValidator(validator);
 
+    connect(&thread, SIGNAL(newFortune(QString)),
+             this, SLOT(showResponse(QString)));
+
 
     //QPixmap pcbImage(":/images/figures/PCB.png");
     //ui->img_demoPCBImage->setPixmap(pcbImage);
@@ -38,6 +41,12 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showResponse(const QString &nextFortune)
+{
+    ui->dbgLabel->appendPlainText(nextFortune);
+
 }
 
 
@@ -96,9 +105,10 @@ void MainWindow::on_btn_connect_clicked()
 {
     //connect to the TCP/IP server on the PLC
 
-    QString result;
-    result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt());
-    ui->lbl_debugConsole->setPlainText(result);
+//    QString result;
+//    result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt());
+//    ui->dbgLabel->setPlainText(result);
+    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
 }
 
 void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
@@ -167,8 +177,12 @@ void MainWindow::on_sendButton_clicked()
 
 
 
-    result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt(), ui->cmdLabel->text());
-    ui->lbl_debugConsole->setPlainText(result);
+
+    //result = cTest.Connect(ui->lineEdit_20->text(),ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
+    //ui->dbgLabel->setPlainText(result);
+
+    thread.sendCommand(ui->lineEdit_20->text(), ui->lineEdit_19->text().toInt(), ui->cmdLabel->text());
+
 
 }
 

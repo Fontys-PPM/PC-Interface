@@ -6,6 +6,7 @@
 #include "sockettest.h"
 #include <QFileDialog>
 #include "csv.h"
+#include "tcpthread.h"
 #include <QStandardItemModel>
 
 QT_BEGIN_NAMESPACE
@@ -52,10 +53,14 @@ private slots:
 
     void on_btn_moveCommand_clicked();
 
+    void showResponse(const QString &fortune);
+
+
 private:
     Ui::MainWindow *ui;
     SocketTest cTest;
 
+    tcpThread thread;
     void updateCmd();
 
 };

@@ -23,7 +23,7 @@ QString SocketTest::Connect(QString adress, int port )
 
 
         QByteArray byteArray = socket->readAll();
-        qDebug() << byteArray;
+        //qDebug() << byteArray;
 
         QString result = QString::fromStdString(byteArray.toStdString());
 

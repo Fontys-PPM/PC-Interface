@@ -40,6 +40,8 @@ if(ANDROID)
     sockettest.cpp
     sockettest.h
     csv.h
+    tcpthread.h
+    tcpthread.cpp
   )
 else()
   add_executable(ppm2
@@ -51,6 +53,8 @@ else()
     sockettest.h
     resources.qrc
     csv.h
+    tcpthread.h
+    tcpthread.cpp
   )
 endif()
 
