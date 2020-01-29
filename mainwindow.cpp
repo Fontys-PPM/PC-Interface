@@ -50,9 +50,8 @@ void MainWindow::showResponse(const QString &nextFortune)
 }
 
 
-void MainWindow::updateCmd()
+void MainWindow::updateCmd(QString state)
 {
-    QString state = "CMOVE";
     QString command;
     if(state == "Power on")
     {
@@ -62,7 +61,7 @@ void MainWindow::updateCmd()
     {
         command = "CHOME;";
     }
-    else if(state == "Move")
+    else if(state == "CMOVE")
     {
         int x = (int)( ui->txt_xPosition->text().toFloat() * 1000);
         int y = (int)( ui->txt_yPosition->text().toFloat() * 1000);
@@ -113,31 +112,27 @@ void MainWindow::on_btn_connect_clicked()
 
 void MainWindow::on_txt_xPosition_editingFinished()
 {
-    updateCmd();
+    updateCmd("CMOVE");
 }
 
 void MainWindow::on_txt_yPosition_editingFinished()
 {
-    updateCmd();
+    updateCmd("CMOVE");
 }
 
 void MainWindow::on_txt_zPosition_editingFinished()
 {
-    updateCmd();
+    updateCmd("CMOVE");
 }
 
 void MainWindow::on_txt_phiPosition_editingFinished()
 {
-    updateCmd();
+    updateCmd("CMOVE");
 }
 
 void MainWindow::on_btn_send_clicked()
 {
     QString result;
-
-
-
-
     //result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
     //ui->lbl_debugConsole->setPlainText(result);
 
@@ -220,4 +215,12 @@ void MainWindow::on_btn_moveCommand_clicked()
     ssP <<  std::to_string(p*0.000001).substr(8-leading);
     command = "CMOVE;" + QString::fromStdString(ssX.str()) + ";" + QString::fromStdString(ssY.str()) +
             ";" + QString::fromStdString(ssZ.str()) +";"+ QString::fromStdString(ssP.str()) +";" ;
+    updateCmd("CMOVE");
+    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+}
+
+void MainWindow::on_cbx_showCommandString_stateChanged(int arg1)
+{
+    ui->txt_commandString->setEnabled(arg1);
+    ui->btn_send->setEnabled(arg1);
 }

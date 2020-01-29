@@ -48,12 +48,14 @@ private slots:
     void showResponse(const QString &fortune);
 
 
+    void on_cbx_showCommandString_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     SocketTest cTest;
 
     tcpThread thread;
-    void updateCmd();
+    void updateCmd(QString state);
 
 };
 #endif // MAINWINDOW_H
