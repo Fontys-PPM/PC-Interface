@@ -50,6 +50,8 @@ private slots:
 
     void on_cbx_showCommandString_stateChanged(int arg1);
 
+    void on_btn_homeDevice_clicked();
+
 private:
     Ui::MainWindow *ui;
     SocketTest cTest;

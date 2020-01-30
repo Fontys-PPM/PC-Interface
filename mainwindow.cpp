@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->img_fontysLogo->setPixmap(pix);
     ui->lbl_buildVersion->setText(build);
 
-    QRegExp rx("^[0-9]{1,3}([.][0-9]{1,3})?$");
+    QRegExp rx("^[0-9]{1,3}([.][0-9]{1,4})?$");
     QValidator *validator = new QRegExpValidator(rx, this);
 
     ui->txt_xPosition->setValidator(validator);
@@ -57,25 +57,25 @@ void MainWindow::updateCmd(QString state)
     {
         command = "CPWON;";
     }
-    else if(state == "Home")
+    else if(state == "CHOME")
     {
         command = "CHOME;";
     }
     else if(state == "CMOVE")
     {
-        int x = (int)( ui->txt_xPosition->text().toFloat() * 1000);
-        int y = (int)( ui->txt_yPosition->text().toFloat() * 1000);
-        int z = (int)( ui->txt_zPosition->text().toFloat() * 1000);
-        int p = (int)( ui->txt_phiPosition->text().toFloat() * 1000);
+        int x = (int)( ui->txt_xPosition->text().toFloat() * 10000);
+        int y = (int)( ui->txt_yPosition->text().toFloat() * 10000);
+        int z = (int)( ui->txt_zPosition->text().toFloat() * 10000);
+        int p = (int)( ui->txt_phiPosition->text().toFloat() * 10000);
 
-        int leading = 6; //6 at max
-        std::stringstream ssX, ssY, ssZ, ssP;
-        ssX <<  std::to_string(x*0.000001).substr(8-leading); //="042"
-        ssY <<  std::to_string(y*0.000001).substr(8-leading);
-        ssZ <<  std::to_string(z*0.000001).substr(8-leading);
-        ssP <<  std::to_string(p*0.000001).substr(8-leading);
-        command = "CMOVE;" + QString::fromStdString(ssX.str()) + ";" + QString::fromStdString(ssY.str()) +
-                ";" + QString::fromStdString(ssZ.str()) +";"+ QString::fromStdString(ssP.str()) +";" ;
+        int n_zero = 8;
+        std::string stringX = std::string(n_zero - std::to_string(x).length(), '0') + std::to_string(x);
+        std::string stringY = std::string(n_zero - std::to_string(y).length(), '0') + std::to_string(y);
+        std::string stringZ = std::string(n_zero - std::to_string(z).length(), '0') + std::to_string(z);
+        std::string stringP = std::string(n_zero - std::to_string(p).length(), '0') + std::to_string(p);
+
+        command = "CMOVE;" + QString::fromStdString(stringX) + ";" + QString::fromStdString(stringY) +
+                ";" + QString::fromStdString(stringZ) +";"+ QString::fromStdString(stringP) +";" ;
     }
     else if(state == "Ping")
     {
@@ -223,4 +223,10 @@ void MainWindow::on_cbx_showCommandString_stateChanged(int arg1)
 {
     ui->txt_commandString->setEnabled(arg1);
     ui->btn_send->setEnabled(arg1);
+}
+
+void MainWindow::on_btn_homeDevice_clicked()
+{
+    updateCmd("CHOME");
+    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 }

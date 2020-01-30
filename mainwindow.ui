@@ -185,7 +185,7 @@
         <x>300</x>
         <y>10</y>
         <width>201</width>
-        <height>221</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="title">
@@ -321,9 +321,9 @@
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>130</y>
-        <width>281</width>
+        <x>510</x>
+        <y>120</y>
+        <width>261</width>
         <height>51</height>
        </rect>
       </property>
@@ -333,7 +333,7 @@
       <widget class="QPushButton" name="btn_disableVacuum">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>140</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -346,7 +346,7 @@
       <widget class="QPushButton" name="btn_enableVacuum">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -360,9 +360,9 @@
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>180</y>
-        <width>281</width>
+        <x>510</x>
+        <y>170</y>
+        <width>261</width>
         <height>51</height>
        </rect>
       </property>
@@ -372,7 +372,7 @@
       <widget class="QPushButton" name="btn_enableLight">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -385,7 +385,7 @@
       <widget class="QPushButton" name="btn_disableLight">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>140</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -477,10 +477,10 @@
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>130</y>
-        <width>261</width>
-        <height>101</height>
+        <x>10</x>
+        <y>170</y>
+        <width>271</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="title">
@@ -502,7 +502,7 @@
       <widget class="QPushButton" name="btn_clearDebugConsole">
        <property name="geometry">
         <rect>
-         <x>140</x>
+         <x>150</x>
          <y>20</y>
          <width>110</width>
          <height>25</height>
@@ -516,9 +516,9 @@
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>230</y>
-        <width>501</width>
+        <width>491</width>
         <height>71</height>
        </rect>
       </property>
@@ -580,9 +580,9 @@
      <widget class="QGroupBox" name="groupBox_8">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>300</y>
-        <width>451</width>
+        <width>441</width>
         <height>281</height>
        </rect>
       </property>
@@ -644,6 +644,45 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Power </string>
+      </property>
+      <widget class="QPushButton" name="btn_powerOn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>110</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable motors</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_powerOff">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>20</y>
+         <width>110</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Disable power</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
