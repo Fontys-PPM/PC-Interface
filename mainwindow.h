@@ -52,6 +52,10 @@ private slots:
 
     void on_btn_homeDevice_clicked();
 
+    void on_btn_powerOn_clicked();
+
+    void on_btn_powerOff_clicked();
+
 private:
     Ui::MainWindow *ui;
     SocketTest cTest;

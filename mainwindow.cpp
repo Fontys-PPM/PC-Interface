@@ -53,7 +53,7 @@ void MainWindow::showResponse(const QString &nextFortune)
 void MainWindow::updateCmd(QString state)
 {
     QString command;
-    if(state == "Power on")
+    if(state == "CPWON")
     {
         command = "CPWON;";
     }
@@ -81,7 +81,7 @@ void MainWindow::updateCmd(QString state)
     {
         command = "CPING;";
     }
-    else if(state == "Power off")
+    else if(state == "CPOFF1")
     {
         command = "CPOFF;";
     }
@@ -228,5 +228,17 @@ void MainWindow::on_cbx_showCommandString_stateChanged(int arg1)
 void MainWindow::on_btn_homeDevice_clicked()
 {
     updateCmd("CHOME");
+    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+}
+
+void MainWindow::on_btn_powerOn_clicked()
+{
+    updateCmd("CPWON");
+    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+}
+
+void MainWindow::on_btn_powerOff_clicked()
+{
+    updateCmd("CPOFF");
     thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 }
