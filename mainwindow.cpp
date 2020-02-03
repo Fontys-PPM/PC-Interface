@@ -30,10 +30,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //load the fontys logo
     QPixmap pix(":/images/figures/Fontys-Logo.png");
     ui->img_fontysLogo->setPixmap(pix);
     ui->lbl_buildVersion->setText(build);
 
+    //set the validator for the x,y,phi line edits
     QRegExp rx("^[0-9]{1,3}([.][0-9]{1,4})?$");
     QValidator *validator = new QRegExpValidator(rx, this);
 
@@ -42,15 +45,9 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->txt_zPosition->setValidator(validator);
     ui->txt_phiPosition->setValidator(validator);
 
+    //connect the tcp/ip thread to the showReponse slot
     connect(&thread, SIGNAL(newFortune(QString)),
              this, SLOT(showResponse(QString)));
-
-
-    //ui->cbx_showCommandString->isChecked()
-
-    //QPixmap pcbImage(":/images/figures/PCB.png");
-    //ui->img_demoPCBImage->setPixmap(pcbImage);
-    //connect(pushButton_11, SIGNAL (released()), this, SLOT (test()));
 
 }
 
@@ -59,10 +56,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showResponse(const QString &nextFortune)
+void MainWindow::showResponse(const QString &nextFortune) //Handles responses from the TCP/IP Thread
 {
+    //append the received ACK from the PLC
     ui->lbl_debugConsole->appendPlainText(nextFortune);
 
+
+    //If a batch is running send a new command whenever we receive an ACK
     if(inBatch)
     {
         doBatch();
@@ -71,7 +71,7 @@ void MainWindow::showResponse(const QString &nextFortune)
 }
 
 
-void MainWindow::updateCmd(QString state)
+void MainWindow::updateCmd(QString state) // Parses the command string
 {
     QString command;
     if(state == "CPWON")
@@ -84,18 +84,21 @@ void MainWindow::updateCmd(QString state)
     }
     else if(state == "CMOVE")
     {
+        //Get values from the line edits
         int x = (int)( ui->txt_xPosition->text().toFloat() * 10000);
         int y = (int)( ui->txt_yPosition->text().toFloat() * 10000);
         int z = 0;
-//        int z = (int)( ui->txt_zPosition->text().toFloat() * 10000);
         int p = (int)( ui->txt_phiPosition->text().toFloat() * 10000);
 
+
+        //Add leading zeros
         int n_zero = 8;
         std::string stringX = std::string(n_zero - std::to_string(x).length(), '0') + std::to_string(x);
         std::string stringY = std::string(n_zero - std::to_string(y).length(), '0') + std::to_string(y);
         std::string stringZ = std::string(n_zero - std::to_string(z).length(), '0') + std::to_string(z);
         std::string stringP = std::string(n_zero - std::to_string(p).length(), '0') + std::to_string(p);
 
+        //Parse command
         command = "CMOVE;" + QString::fromStdString(stringX) + ";" + QString::fromStdString(stringY) +
                 ";" + QString::fromStdString(stringZ) +";"+ QString::fromStdString(stringP) +";" ;
     }
