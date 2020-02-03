@@ -81,7 +81,7 @@ void MainWindow::updateCmd(QString state)
     {
         command = "CPING;";
     }
-    else if(state == "CPOFF1")
+    else if(state == "CPOFF")
     {
         command = "CPOFF;";
     }
