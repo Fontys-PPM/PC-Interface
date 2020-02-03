@@ -221,7 +221,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
-        QString commandStr = "CMNDMOVE;" + stringX + ";" + stringY +
+        QString commandStr = "CMOVE;" + stringX + ";" + stringY +
                 ";"+ stringP +";" ;
 
         QStandardItem *item7 = new QStandardItem(commandStr);
