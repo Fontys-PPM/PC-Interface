@@ -294,7 +294,7 @@ void MainWindow::doBatch()
     {
         if(inBatch)
         {
-            if(countBatch <= lenBatch)
+            if(countBatch < lenBatch)
             {
                 QModelIndex idx = model->index(countBatch, 6);
                 QStandardItem *curItem = model->itemFromIndex(idx);
@@ -314,6 +314,7 @@ void MainWindow::doBatch()
             else
             {
                 inBatch = false;
+                countBatch = 0;
                 ui->btn_sendBatch->setEnabled(true);
                 ui->btn_selectPositionFile->setEnabled(true);
             }
