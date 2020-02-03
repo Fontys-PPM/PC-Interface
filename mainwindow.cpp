@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
              this, SLOT(showResponse(QString)));
 
 
+    //ui->cbx_showCommandString->isChecked()
+
     //QPixmap pcbImage(":/images/figures/PCB.png");
     //ui->img_demoPCBImage->setPixmap(pcbImage);
     //connect(pushButton_11, SIGNAL (released()), this, SLOT (test()));
@@ -46,6 +48,11 @@ MainWindow::~MainWindow()
 void MainWindow::showResponse(const QString &nextFortune)
 {
     ui->lbl_debugConsole->appendPlainText(nextFortune);
+
+    if(inBatch)
+    {
+        doBatch();
+    }
 
 }
 
@@ -159,7 +166,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
     in.read_header(io::ignore_extra_column, "Designator", "Footprint", "X","Y","Layer","Rotation");
     std::string Designator; std::string Footprint; std::string X; std::string Y; std::string Layer; std::string Rotation;
 
-    QStandardItemModel *model = new QStandardItemModel;
+
 
     int counter = 0;
 
@@ -196,10 +203,11 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
-        QString commandStr = "CMOVE;" + stringX + ";" + stringY +
-                ";"+stringZ +";"+ stringP +";" ;
+        QString commandStr = "CMNDMOVE;" + stringX + ";" + stringY +
+                ";"+ stringP +";" ;
 
         QStandardItem *item7 = new QStandardItem(commandStr);
+        QStandardItem *item8 = new QStandardItem("");
 
         model->setItem(counter,0,item );
         model->setItem(counter,1,item2);
@@ -208,10 +216,14 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         model->setItem(counter,4,item5);
         model->setItem(counter,5,item6);
         model->setItem(counter,6,item7);
+        model->setItem(counter,7,item8);
         counter++;
     }
 
     ui->tbl_positionFileView->setModel(model);
+    batchLoaded = true;
+    lenBatch = counter;
+
 }
 
 void MainWindow::on_btn_moveCommand_clicked()
@@ -244,4 +256,50 @@ void MainWindow::on_btn_powerOff_clicked()
 {
     updateCmd("CPOFF");
     thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+}
+
+void MainWindow::on_btn_sendBatch_clicked()
+{
+    if(!inBatch)
+    {
+        inBatch = true;
+        doBatch();
+        ui->btn_sendBatch->setEnabled(false);
+        ui->btn_selectPositionFile->setEnabled(false);
+    }
+
+}
+
+
+void MainWindow::doBatch()
+{
+    if(batchLoaded)
+    {
+        if(inBatch)
+        {
+            if(countBatch <= lenBatch)
+            {
+                QModelIndex idx = model->index(countBatch, 6);
+                QStandardItem *curItem = model->itemFromIndex(idx);
+
+                ui->txt_positionFilePath->setText(curItem->text());
+
+                thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), curItem->text());
+
+                QStandardItem *commandItem = new QStandardItem("Sent");
+
+                model->setItem(countBatch,7,commandItem);
+                ui->tbl_positionFileView->setModel(model);
+
+                countBatch++;
+
+            }
+            else
+            {
+                inBatch = false;
+                ui->btn_sendBatch->setEnabled(true);
+                ui->btn_selectPositionFile->setEnabled(true);
+            }
+        }
+    }
 }
