@@ -8,6 +8,7 @@
 #include "csv.h"
 #include "tcpthread.h"
 #include <QStandardItemModel>
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -56,12 +57,23 @@ private slots:
 
     void on_btn_powerOff_clicked();
 
+    void on_btn_sendBatch_clicked();
+
 private:
     Ui::MainWindow *ui;
     SocketTest cTest;
 
     tcpThread thread;
     void updateCmd(QString state);
+
+
+    void doBatch();
+
+    bool batchLoaded = false;
+    bool inBatch = false;
+    int countBatch = 0;
+    int lenBatch = -1;
+    QStandardItemModel *model = new QStandardItemModel;
 
 };
 #endif // MAINWINDOW_H
