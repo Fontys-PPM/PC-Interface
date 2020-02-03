@@ -1,3 +1,5 @@
+/* Includes */
+/*====================================================*/
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <string>
@@ -5,12 +7,24 @@
 #include <sstream>
 #include <vector>
 
+/* Definitions */
+/*====================================================*/
+#define CmdMoveAbsolute = "CMOVEABS";
+#define CmdMoveRelative = "CMOVERLT";
+#define CmdPowerOnMotors = "CPOWERON";
+#define CmdPowerOffMotors = "CPOWEROF";
+#define CmdPickComponent = "CPICKCMP";
+#define CmdPlaceComponent = "CPLCECMP";
 
-
-
+/* Constants */
+/*====================================================*/
 const QString build = "Build: alpha_27012020";
 
+/* Variables */
+/*====================================================*/
 
+/* Public Methods */
+/*====================================================*/
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -25,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->txt_xPosition->setValidator(validator);
     ui->txt_yPosition->setValidator(validator);
-    ui->txt_zPosition->setValidator(validator);
+//    ui->txt_zPosition->setValidator(validator);
     ui->txt_phiPosition->setValidator(validator);
 
     connect(&thread, SIGNAL(newFortune(QString)),
@@ -65,7 +79,8 @@ void MainWindow::updateCmd(QString state)
     {
         int x = (int)( ui->txt_xPosition->text().toFloat() * 10000);
         int y = (int)( ui->txt_yPosition->text().toFloat() * 10000);
-        int z = (int)( ui->txt_zPosition->text().toFloat() * 10000);
+        int z = 0;
+//        int z = (int)( ui->txt_zPosition->text().toFloat() * 10000);
         int p = (int)( ui->txt_phiPosition->text().toFloat() * 10000);
 
         int n_zero = 8;
@@ -88,6 +103,15 @@ void MainWindow::updateCmd(QString state)
     ui->txt_commandString->setText(command);
 
 }
+
+void MainWindow::sendCommand()
+{
+    if (!ui->cbx_showCommandString->isChecked())
+    {
+        thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+    }
+}
+
 
 
 void MainWindow::on_btn_clearDebugConsole_clicked()
@@ -120,10 +144,10 @@ void MainWindow::on_txt_yPosition_editingFinished()
     updateCmd("CMOVE");
 }
 
-void MainWindow::on_txt_zPosition_editingFinished()
-{
-    updateCmd("CMOVE");
-}
+//void MainWindow::on_txt_zPosition_editingFinished()
+//{
+//    updateCmd("CMOVE");
+//}
 
 void MainWindow::on_txt_phiPosition_editingFinished()
 {
@@ -132,13 +156,7 @@ void MainWindow::on_txt_phiPosition_editingFinished()
 
 void MainWindow::on_btn_send_clicked()
 {
-    QString result;
-    //result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
-    //ui->lbl_debugConsole->setPlainText(result);
-
     thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
-
-
 }
 
 void MainWindow::on_b_getFile_clicked()
@@ -216,11 +234,10 @@ void MainWindow::on_btn_selectPositionFile_clicked()
 
 void MainWindow::on_btn_moveCommand_clicked()
 {
-
-
     updateCmd("CMOVE");
-    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+    sendCommand();
 }
+
 
 void MainWindow::on_cbx_showCommandString_stateChanged(int arg1)
 {
@@ -231,17 +248,17 @@ void MainWindow::on_cbx_showCommandString_stateChanged(int arg1)
 void MainWindow::on_btn_homeDevice_clicked()
 {
     updateCmd("CHOME");
-    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+    sendCommand();
 }
 
 void MainWindow::on_btn_powerOn_clicked()
 {
     updateCmd("CPWON");
-    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+    sendCommand();
 }
 
 void MainWindow::on_btn_powerOff_clicked()
 {
     updateCmd("CPOFF");
-    thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
+    sendCommand();
 }

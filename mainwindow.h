@@ -33,7 +33,7 @@ private slots:
 
     void on_txt_yPosition_editingFinished();
 
-    void on_txt_zPosition_editingFinished();
+    void sendCommand();
 
     void on_txt_phiPosition_editingFinished();
 

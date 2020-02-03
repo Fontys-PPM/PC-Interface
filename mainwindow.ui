@@ -189,7 +189,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>Move Command</string>
+       <string>Move X / Y / φ</string>
       </property>
       <widget class="QLabel" name="label_4">
        <property name="geometry">
@@ -249,50 +249,24 @@
         <string>Input in Millimeters</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>80</y>
-         <width>91</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Z Position</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="txt_zPosition">
+      <widget class="QPushButton" name="btn_moveCommand">
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>80</y>
+         <y>180</y>
          <width>110</width>
          <height>25</height>
         </rect>
        </property>
-       <property name="placeholderText">
-        <string>Input in Millimeters</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>110</y>
-         <width>80</width>
-         <height>25</height>
-        </rect>
-       </property>
        <property name="text">
-        <string>Phi Position</string>
+        <string>Move</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="txt_phiPosition">
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>110</y>
+         <y>80</y>
          <width>110</width>
          <height>25</height>
         </rect>
@@ -304,17 +278,30 @@
         <string>Input in Degrees</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_moveCommand">
+      <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>140</y>
-         <width>110</width>
+         <x>10</x>
+         <y>80</y>
+         <width>80</width>
          <height>25</height>
         </rect>
        </property>
        <property name="text">
-        <string>Move</string>
+        <string>φ Position</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="cbx_relativePosition">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>180</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Relative Position</string>
        </property>
       </widget>
      </widget>
@@ -367,7 +354,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>Phi Module Light</string>
+       <string>φ Module Light</string>
       </property>
       <widget class="QPushButton" name="btn_enableLight">
        <property name="geometry">
@@ -470,7 +457,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Home Phi Axis</string>
+        <string>Home φ Axis</string>
        </property>
       </widget>
      </widget>
@@ -655,7 +642,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>Power motors</string>
+       <string>Power Motors</string>
       </property>
       <widget class="QPushButton" name="btn_powerOn">
        <property name="geometry">
@@ -681,6 +668,45 @@
        </property>
        <property name="text">
         <string>Disable Motors</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_11">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>230</y>
+        <width>261</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Pick / Place</string>
+      </property>
+      <widget class="QPushButton" name="btn_pickComponent">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>110</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Pick Component</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_placeComponent">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>40</y>
+         <width>110</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Place Component</string>
        </property>
       </widget>
      </widget>
@@ -947,7 +973,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>btn_connect</tabstop>
   <tabstop>txt_xPosition</tabstop>
   <tabstop>txt_yPosition</tabstop>
-  <tabstop>txt_zPosition</tabstop>
   <tabstop>txt_phiPosition</tabstop>
   <tabstop>btn_disableVacuum</tabstop>
   <tabstop>btn_enableVacuum</tabstop>
