@@ -154,6 +154,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
     //ui->txt_positionFilePath->setText("C:/Users/thijs/OneDrive/Desktop/ppm2/Files/SMT_Coordinate_Template.csv");
 
     //io::CSVReader<6> in("C:/Users/thijs/OneDrive/Desktop/ppm2/Files/SMT_Coordinate_Template.csv");
+
     io::CSVReader<6> in( fileName.toLocalFile().toStdString());
     in.read_header(io::ignore_extra_column, "Designator", "Footprint", "X","Y","Layer","Rotation");
     std::string Designator; std::string Footprint; std::string X; std::string Y; std::string Layer; std::string Rotation;
@@ -171,18 +172,32 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QString QLayer = QString::fromStdString(Layer);
         QString QRotation = QString::fromStdString(Rotation);
 
-        QString offsetX =QString::number( QX.toFloat() + ui->txt_xOffset->text().toFloat());
-        QString offsetY =QString::number( QY.toFloat() + ui->txt_yOffset->text().toFloat());
+        int x = (int)(QX.toFloat() * 10000);
+        int y = (int)( QY.toFloat() * 10000);
+        int z = 0;
+        int p = (int)( QRotation.toFloat() * 10000);
+
+        int offsetX = (int)(x+ ui->txt_xOffset->text().toFloat());
+        int offsetY = (int)(y + ui->txt_yOffset->text().toFloat());
+
+        int n_zero = 8;
+        QString stringX = QString::fromStdString(std::string(n_zero - std::to_string(offsetX).length(), '0') + std::to_string(offsetX));
+        QString stringY = QString::fromStdString(std::string(n_zero - std::to_string(offsetY).length(), '0') + std::to_string(offsetY));
+        QString stringZ = QString::fromStdString(std::string(n_zero - std::to_string(z).length(), '0') + std::to_string(z));
+        QString stringP = QString::fromStdString(std::string(n_zero - std::to_string(p).length(), '0') + std::to_string(p));
+
+
+
 
         QStandardItem *item  = new QStandardItem(Qdesignator);
         QStandardItem *item2 = new QStandardItem(QFootprint);
-        QStandardItem *item3 = new QStandardItem(offsetX);
-        QStandardItem *item4 = new QStandardItem(offsetY);
+        QStandardItem *item3 = new QStandardItem(QX);
+        QStandardItem *item4 = new QStandardItem(QY);
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
-        QString commandStr = "CMOVE;" + offsetX + ";" + offsetY +
-                ";-1;"+ QRotation +";" ;
+        QString commandStr = "CMOVE;" + stringX + ";" + stringY +
+                ";"+stringZ +";"+ stringP +";" ;
 
         QStandardItem *item7 = new QStandardItem(commandStr);
 
@@ -201,20 +216,8 @@ void MainWindow::on_btn_selectPositionFile_clicked()
 
 void MainWindow::on_btn_moveCommand_clicked()
 {
-    QString command;
-    int x = (int)( ui->txt_xPosition->text().toFloat() * 1000);
-    int y = (int)( ui->txt_yPosition->text().toFloat() * 1000);
-    int z = (int)( ui->txt_zPosition->text().toFloat() * 1000);
-    int p = (int)( ui->txt_phiPosition->text().toFloat() * 1000);
 
-    int leading = 6; //6 at max
-    std::stringstream ssX, ssY, ssZ, ssP;
-    ssX <<  std::to_string(x*0.000001).substr(8-leading); //="042"
-    ssY <<  std::to_string(y*0.000001).substr(8-leading);
-    ssZ <<  std::to_string(z*0.000001).substr(8-leading);
-    ssP <<  std::to_string(p*0.000001).substr(8-leading);
-    command = "CMOVE;" + QString::fromStdString(ssX.str()) + ";" + QString::fromStdString(ssY.str()) +
-            ";" + QString::fromStdString(ssZ.str()) +";"+ QString::fromStdString(ssP.str()) +";" ;
+
     updateCmd("CMOVE");
     thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 }

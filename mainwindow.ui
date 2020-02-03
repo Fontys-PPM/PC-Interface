@@ -655,7 +655,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>Power </string>
+       <string>Power motors</string>
       </property>
       <widget class="QPushButton" name="btn_powerOn">
        <property name="geometry">
@@ -805,9 +805,9 @@
      <widget class="QPushButton" name="btn_selectPositionFile">
       <property name="geometry">
        <rect>
-        <x>720</x>
+        <x>620</x>
         <y>530</y>
-        <width>75</width>
+        <width>81</width>
         <height>23</height>
        </rect>
       </property>
@@ -818,11 +818,24 @@
      <widget class="QLineEdit" name="txt_positionFilePath">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>230</x>
         <y>530</y>
         <width>381</width>
         <height>20</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_sendBatch">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>530</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Send Batch</string>
       </property>
      </widget>
     </widget>
