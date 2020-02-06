@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <sstream>
 #include <vector>
+#include <QDebug>
 
 /* Definitions */
 /*====================================================*/
@@ -60,11 +61,12 @@ void MainWindow::showResponse(const QString &nextFortune) //Handles responses fr
 {
     //append the received ACK from the PLC
     ui->lbl_debugConsole->appendPlainText(nextFortune);
-
+     qDebug() << nextFortune;
 
     //If a batch is running send a new command whenever we receive an ACK
-    if(inBatch)
+    if(inBatch && nextFortune == "Ack")
     {
+        qDebug("received an Ack");
         doBatch();
     }
 
