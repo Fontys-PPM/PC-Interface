@@ -76,15 +76,11 @@ void MainWindow::showResponse(const QString &nextFortune) //Handles responses fr
 void MainWindow::updateCmd(QString state) // Parses the command string
 {
     QString command;
-    if(state == "CPWON")
+    if(state == "CPOWERON")
     {
-        command = "CPWON;";
+        command ="CPOWERON";
     }
-    else if(state == "CHOME")
-    {
-        command = "CHOME;";
-    }
-    else if(state == "CMOVE")
+    else if(state == "CMOVEABS")
     {
         //Get values from the line edits
         int x = (int)( ui->txt_xPosition->text().toFloat() * 10000);
@@ -101,16 +97,16 @@ void MainWindow::updateCmd(QString state) // Parses the command string
         std::string stringP = std::string(n_zero - std::to_string(p).length(), '0') + std::to_string(p);
 
         //Parse command
-        command = "CMOVE;" + QString::fromStdString(stringX) + ";" + QString::fromStdString(stringY) +
+        command = "CMOVEABS;" + QString::fromStdString(stringX) + ";" + QString::fromStdString(stringY) +
                 ";" + QString::fromStdString(stringZ) +";"+ QString::fromStdString(stringP) +";" ;
     }
     else if(state == "Ping")
     {
         command = "CPING;";
     }
-    else if(state == "CPOFF")
+    else if(state == "CPOWEROF")
     {
-        command = "CPOFF;";
+        command = "CPOWEROF;";
     }
     ui->txt_commandString->setText(command);
 
@@ -148,22 +144,22 @@ void MainWindow::on_btn_connect_clicked()
 
 void MainWindow::on_txt_xPosition_editingFinished()
 {
-    updateCmd("CMOVE");
+    updateCmd("CMOVEABS");
 }
 
 void MainWindow::on_txt_yPosition_editingFinished()
 {
-    updateCmd("CMOVE");
+    updateCmd("CMOVEABS");
 }
 
 //void MainWindow::on_txt_zPosition_editingFinished()
 //{
-//    updateCmd("CMOVE");
+//    updateCmd("CMOVEABS");
 //}
 
 void MainWindow::on_txt_phiPosition_editingFinished()
 {
-    updateCmd("CMOVE");
+    updateCmd("CMOVEABS");
 }
 
 void MainWindow::on_btn_send_clicked()
@@ -226,7 +222,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
-        QString commandStr = "CMNDMOVE;" + stringX + ";" + stringY +
+        QString commandStr = "CMOVEABS;" + stringX + ";" + stringY +
                 ";"+ stringP +";" ;
 
         QStandardItem *item7 = new QStandardItem(commandStr);
@@ -251,7 +247,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
 
 void MainWindow::on_btn_moveCommand_clicked()
 {
-    updateCmd("CMOVE");
+    updateCmd("CMOVEABS");
     sendCommand();
 }
 
@@ -264,19 +260,19 @@ void MainWindow::on_cbx_showCommandString_stateChanged(int arg1)
 
 void MainWindow::on_btn_homeDevice_clicked()
 {
-    updateCmd("CHOME");
-    sendCommand();
+    //updateCmd("CHOME");
+    //sendCommand();
 }
 
 void MainWindow::on_btn_powerOn_clicked()
 {
-    updateCmd("CPWON");
+    updateCmd("CPOWERON");
     sendCommand();
 }
 
 void MainWindow::on_btn_powerOff_clicked()
 {
-    updateCmd("CPOFF");
+    updateCmd("CPOWEROF");
     sendCommand();
 }
 
