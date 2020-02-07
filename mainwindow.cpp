@@ -19,7 +19,7 @@
 
 /* Constants */
 /*====================================================*/
-const QString build = "Build: stable_06022020";
+const QString build = "Version: 1.0     Build: stable_06022020";
 
 /* Variables */
 /*====================================================*/
@@ -123,21 +123,11 @@ void MainWindow::sendCommand()
 
 void MainWindow::on_btn_clearDebugConsole_clicked()
 {
-//    ui->txt_xPosition->setText("");
-//    ui->txt_yPosition->setText("");
-//    ui->txt_zPosition->setText("");
-//    ui->txt_phiPosition->setText("");
-//    ui->txt_commandString->setText("");
     ui->lbl_debugConsole->setPlainText("");
 }
 
 void MainWindow::on_btn_connect_clicked()
 {
-    //connect to the TCP/IP server on the PLC
-
-//    QString result;
-//    result = cTest.Connect(ui->txt_ipAddress->text(),ui->txt_portNumber->text().toInt());
-//    ui->lbl_debugConsole->setPlainText(result);
     thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 }
 
@@ -151,10 +141,6 @@ void MainWindow::on_txt_yPosition_editingFinished()
     updateCmd("CMOVEABS");
 }
 
-//void MainWindow::on_txt_zPosition_editingFinished()
-//{
-//    updateCmd("CMOVEABS");
-//}
 
 void MainWindow::on_txt_phiPosition_editingFinished()
 {
@@ -176,9 +162,6 @@ void MainWindow::on_btn_selectPositionFile_clicked()
     QUrl fileName = QFileDialog::getOpenFileUrl(this);
 
     ui->txt_positionFilePath->setText(fileName.toLocalFile());
-    //ui->txt_positionFilePath->setText("C:/Users/thijs/OneDrive/Desktop/ppm2/Files/SMT_Coordinate_Template.csv");
-
-    //io::CSVReader<6> in("C:/Users/thijs/OneDrive/Desktop/ppm2/Files/SMT_Coordinate_Template.csv");
 
     io::CSVReader<6> in( fileName.toLocalFile().toStdString());
     in.read_header(io::ignore_extra_column, "Designator", "Footprint", "X","Y","Layer","Rotation");
