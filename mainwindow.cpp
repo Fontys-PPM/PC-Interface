@@ -64,7 +64,7 @@ void MainWindow::showResponse(const QString &nextFortune) //Handles responses fr
      qDebug() << nextFortune;
 
     //If a batch is running send a new command whenever we receive an ACK
-    if(inBatch && nextFortune == "Ack")
+    if(inBatch) //&& nextFortune == "Ack")
     {
         qDebug("received an Ack");
         doBatch();
@@ -226,7 +226,7 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         QStandardItem *item5 = new QStandardItem(QLayer);
         QStandardItem *item6 = new QStandardItem(QRotation);
 
-        QString commandStr = "CMNDMOVE;" + stringX + ";" + stringY +
+        QString commandStr = "CMOVE;" + stringX + ";" + stringY +
                 ";"+ stringP +";" ;
 
         QStandardItem *item7 = new QStandardItem(commandStr);
