@@ -9,6 +9,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -60,3 +61,4 @@ endif()
 
 target_link_libraries(ppm2 PRIVATE Qt5::Widgets)
 target_link_libraries(ppm2 PRIVATE Qt5::Network)
+target_link_libraries(ppm2 PRIVATE Qt5::Core)

@@ -40,14 +40,12 @@ private slots:
 
     void on_btn_send_clicked();
 
-    void on_b_getFile_clicked();
 
     void on_btn_selectPositionFile_clicked();
 
     void on_btn_moveCommand_clicked();
 
     void showResponse(const QString &fortune);
-
 
     void on_cbx_showCommandString_stateChanged(int arg1);
 

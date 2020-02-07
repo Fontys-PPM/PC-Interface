@@ -152,11 +152,6 @@ void MainWindow::on_btn_send_clicked()
     thread.sendCommand(ui->txt_ipAddress->text(), ui->txt_portNumber->text().toInt(), ui->txt_commandString->text());
 }
 
-void MainWindow::on_b_getFile_clicked()
-{
-
-}
-
 void MainWindow::on_btn_selectPositionFile_clicked()
 {
     QUrl fileName = QFileDialog::getOpenFileUrl(this);
