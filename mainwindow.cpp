@@ -93,12 +93,11 @@ void MainWindow::updateCmd(QString state) // Parses the command string
         int n_zero = 8;
         std::string stringX = std::string(n_zero - std::to_string(x).length(), '0') + std::to_string(x);
         std::string stringY = std::string(n_zero - std::to_string(y).length(), '0') + std::to_string(y);
-        std::string stringZ = std::string(n_zero - std::to_string(z).length(), '0') + std::to_string(z);
         std::string stringP = std::string(n_zero - std::to_string(p).length(), '0') + std::to_string(p);
 
         //Parse command
         command = "CMOVEABS;" + QString::fromStdString(stringX) + ";" + QString::fromStdString(stringY) +
-                ";" + QString::fromStdString(stringZ) +";"+ QString::fromStdString(stringP) +";" ;
+                ";" + QString::fromStdString(stringP) +";" ;
     }
     else if(state == "Ping")
     {
@@ -209,7 +208,6 @@ void MainWindow::on_btn_selectPositionFile_clicked()
         int n_zero = 8;
         QString stringX = QString::fromStdString(std::string(n_zero - std::to_string(offsetX).length(), '0') + std::to_string(offsetX));
         QString stringY = QString::fromStdString(std::string(n_zero - std::to_string(offsetY).length(), '0') + std::to_string(offsetY));
-        QString stringZ = QString::fromStdString(std::string(n_zero - std::to_string(z).length(), '0') + std::to_string(z));
         QString stringP = QString::fromStdString(std::string(n_zero - std::to_string(p).length(), '0') + std::to_string(p));
 
 
