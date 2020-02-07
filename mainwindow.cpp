@@ -19,7 +19,7 @@
 
 /* Constants */
 /*====================================================*/
-const QString build = "Build: alpha_27012020";
+const QString build = "Build: stable_06022020";
 
 /* Variables */
 /*====================================================*/

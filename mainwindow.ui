@@ -715,57 +715,11 @@
      <attribute name="title">
       <string>Settings</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>113</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ip adress</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>40</y>
-        <width>113</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>20</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>80</y>
+        <x>150</x>
+        <y>20</y>
         <width>67</width>
         <height>17</height>
        </rect>
@@ -777,8 +731,8 @@
      <widget class="QLineEdit" name="txt_yOffset">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>100</y>
+        <x>150</x>
+        <y>40</y>
         <width>113</width>
         <height>25</height>
        </rect>
@@ -790,8 +744,8 @@
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>80</y>
+        <x>20</x>
+        <y>20</y>
         <width>67</width>
         <height>17</height>
        </rect>
@@ -803,8 +757,8 @@
      <widget class="QLineEdit" name="txt_xOffset">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>100</y>
+        <x>20</x>
+        <y>40</y>
         <width>113</width>
         <height>25</height>
        </rect>
@@ -816,7 +770,7 @@
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>Position File</string>
+      <string>Batch processing</string>
      </attribute>
      <widget class="QTableView" name="tbl_positionFileView">
       <property name="geometry">
@@ -865,92 +819,6 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="Tab_1">
-     <attribute name="title">
-      <string>wip_Mainwindow</string>
-     </attribute>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>60</y>
-        <width>561</width>
-        <height>311</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>559</width>
-         <height>309</height>
-        </rect>
-       </property>
-       <widget class="QTextEdit" name="textEdit">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>561</width>
-          <height>311</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;ghfdsa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>450</y>
-        <width>131</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>wip_Demo</string>
-     </attribute>
-     <widget class="QLineEdit" name="demoFile">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>50</y>
-        <width>211</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="b_getFile">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>50</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -981,12 +849,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>btn_clearDebugConsole</tabstop>
   <tabstop>txt_commandString</tabstop>
   <tabstop>scrollArea_2</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>textEdit</tabstop>
-  <tabstop>scrollArea</tabstop>
   <tabstop>lbl_debugConsole</tabstop>
-  <tabstop>lineEdit_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>
